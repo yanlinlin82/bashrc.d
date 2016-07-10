@@ -1,4 +1,11 @@
 foreach-dir() {
-	[ -z "$1" ] || (echo "Usage: for-dir <cmd> [args]..."; return 1)
-	for d in */; do pushd $d; "$@"; popd; done
+	if [ -z "$1" ]; then
+		echo "Usage: foreach-dir <cmd> [args]..."
+		return 1
+	fi
+	for d in $(ls -d */ 2>/dev/null); do
+		pushd $d
+		"$@"
+		popd
+	done
 }
