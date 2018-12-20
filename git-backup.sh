@@ -12,9 +12,9 @@ git-backup() {
 		return 1
 	fi
 
-	DATE=$(git log -1 --pretty=format:%ci 2>/dev/null | cut -c1-16 | sed 's/[- :]//g')
+	DATE=$(git log -1 --pretty=format:%ci 2>/dev/null | cut -c1-20 | sed 's/[- :]//g')
 	if [ -z "${DATE}" ]; then
-		DATE=$(date +%Y%m%d%H%M)
+		DATE=$(date +%Y%m%d%H%M%S)
 	fi
 
 	BUNDLE=~/Backup/${DATE}_${NAME}.git.bundle
